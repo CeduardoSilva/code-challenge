@@ -1,12 +1,13 @@
 const invalidNome = new Error("Nome must be a string")
 const invalidTipo = new Error("Tipo must be a 'analise clinica' or 'imagem'")
 const invalidStatus = new Error("Status must be 'ativo' or 'inativo'")
+const invalidLaboratorios = new Error("Status must be 'ativo' or 'inativo'")
 
 class Exame {
     constructor({ 
         nome, 
         tipo,
-        laboratorios
+        laboratorios = []
     }={}) {
         this.nome = nome 
         this.tipo = tipo 
@@ -29,7 +30,7 @@ class Exame {
     }
 
     validateTipo() {
-        if(typeof this.tipo != "string"){
+        if(this.tipo != 'analise clinica' && this.tipo != 'imagem'){
             throw invalidTipo
         }
     }
