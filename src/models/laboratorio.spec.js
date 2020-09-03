@@ -28,12 +28,4 @@ describe('Laboratorio', () => {
         })).to.throw(errorMessage)
     })
 
-    it('throws error if invalid endereco', () => {
-        let errorMessage = "Endereco must be a string"
-        expect(() => new Laboratorio({
-            nome: "Nome",
-            endereco: 0
-        })).to.throw(errorMessage)
-    })
-
 })
