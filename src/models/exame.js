@@ -55,6 +55,14 @@ class Exame {
         this.status = 'inativo'
     }
 
+    associate(laboratorioId) {
+        this.laboratorios.push(laboratorioId)
+    }
+
+    disassociate(laboratorioId) {
+        this.laboratorios = this.laboratorios.filter(id => { return id != laboratorioId })
+    }
+
 }
 
 module.exports = Exame;

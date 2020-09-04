@@ -21,6 +21,25 @@ describe('Exame', () => {
         expect(exam.laboratorios).to.deep.equal([])
     })
 
+    it("associates a laboratorio id to exame", () => {
+        let exam = new Exame({
+            nome: "Nome",
+            tipo: "imagem"
+        })
+        exam.associate("lab_id")
+        expect(exam.laboratorios[0]).to.equal("lab_id")
+    })
+
+    it("disassociates a laboratorio id to exame", () => {
+        let exam = new Exame({
+            nome: "Nome",
+            tipo: "imagem",
+            laboratorios: ["lab_id"]
+        })
+        exam.disassociate("lab_id")
+        expect(exam.laboratorios).to.deep.equal([])
+    })
+
     it('throws error if invalid nome', () => {
         let errorMessage = "Nome must be a string"
         expect(() => new Exame({

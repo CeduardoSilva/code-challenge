@@ -1,3 +1,5 @@
+require('dotenv/config')
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -5,6 +7,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./src/ports/http_port');
+
+require('./src/ports/mongoose_port')
 
 var app = express();
 

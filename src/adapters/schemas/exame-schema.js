@@ -11,6 +11,11 @@ const ExameSchema = new mongoose.Schema({
         required: true
     },
 
+    laboratorios: {
+        type: Array,
+        required: true
+    },
+
     status: {
         type: String,
         required: true
