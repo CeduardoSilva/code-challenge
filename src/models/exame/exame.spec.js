@@ -2,7 +2,7 @@ let chai = require('chai');
 let expect = chai.expect;
 let Exame = require('./exame')
 
-describe('Exame', () => {
+describe('Exame Model', () => {
 
     it("sets status as 'ativo' by default", () => {
         let exam = new Exame({

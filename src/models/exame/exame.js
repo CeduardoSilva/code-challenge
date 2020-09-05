@@ -7,12 +7,13 @@ class Exame {
     constructor({ 
         nome, 
         tipo,
-        laboratorios = []
+        laboratorios = [],
+        status = 'ativo',
     }={}) {
         this.nome = nome 
         this.tipo = tipo 
         this.laboratorios = laboratorios
-        this.status = 'ativo'
+        this.status = status
         this.validateInputs()
     }
 

@@ -6,7 +6,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./src/ports/http_port');
+var indexRouter = require('./src/ports/http_port/index');
 
 require('./src/ports/mongoose_port')
 
@@ -33,7 +33,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({ error: err })
 });
 
 module.exports = app;

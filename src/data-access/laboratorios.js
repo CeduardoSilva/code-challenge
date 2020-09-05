@@ -1,12 +1,15 @@
+var Laboratorio = require('../models/laboratorio/index');
 var LaboratorioSchema = require('./schemas/laboratorio-schema');
 
-function save(laboratorio) {
+function save(reqData) {
     return new Promise((resolve, reject) => {
 
+        let lab = Laboratorio.createLaboratorio(reqData)
+
         const newLab = new LaboratorioSchema({
-            nome: laboratorio.nome,
-            endereco: laboratorio.endereco,
-            status: laboratorio.status
+            nome: lab.nome,
+            endereco: lab.endereco,
+            status: lab.status
         });
 
         newLab.save().then(_ => {
@@ -38,7 +41,7 @@ function update(labId, newData) {
 
 function setInactive(labId) {
     return new Promise((resolve, reject) => {
-        findLaboratorioById(labId).then(lab => {
+        findLaboratorioById(labId).then( _ => {
             LaboratorioSchema.updateOne({ _id: labId }, ( { status: 'inativo' })).then(result => {
                 resolve(result)
             })
@@ -50,7 +53,9 @@ function findLaboratorioById(id) {
     return new Promise((resolve, reject) => {
         LaboratorioSchema
             .findOne({ _id: id })
-            .then(laboratorio => { resolve(laboratorio) })
+            .then(laboratorio => { 
+                resolve(laboratorio) 
+            })
             .catch(err => reject(err))
     })
 }
@@ -59,5 +64,6 @@ module.exports = {
     save: save,
     update: update,
     setInactive: setInactive,
-    findActiveLaboratorios: findActiveLaboratorios
+    findActiveLaboratorios: findActiveLaboratorios,
+    findLaboratorioById: findLaboratorioById
 }

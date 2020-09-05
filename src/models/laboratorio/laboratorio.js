@@ -5,11 +5,12 @@ const invalidStatus = new Error("Status must be 'ativo' or 'inativo'")
 class Laboratorio {
     constructor({ 
         nome, 
-        endereco
+        endereco,
+        status = 'ativo'
     }={}) {
         this.nome = nome 
         this.endereco = endereco 
-        this.status = 'ativo'
+        this.status = status
         this.validateInputs()
     }
 

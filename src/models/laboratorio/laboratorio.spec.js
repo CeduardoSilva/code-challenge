@@ -2,7 +2,7 @@ let chai = require('chai');
 let expect = chai.expect;
 let Laboratorio = require('./laboratorio')
 
-describe('Laboratorio', () => {
+describe('Laboratorio Model', () => {
 
     it("sets status as 'ativo' by default", () => {
         let lab = new Laboratorio({

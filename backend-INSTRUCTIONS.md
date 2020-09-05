@@ -11,20 +11,20 @@ O objetivo do teste é:
 Estamos desenvolvendo uma aplicação para as seguintes situações:
 
 - Laboratório:
-  - cadastrar um novo laborário; POST /laboratorio
-  - obter uma lista de laboratórios ativos; GET /laboratorio
+  - cadastrar um novo laborário; POST /laboratorio [OK]
+  - obter uma lista de laboratórios ativos; GET /laboratorio [OK]
   - atualizar um laboratório existente; PUT /laboratorio
   - remover logicamente um laboratório ativo. PUT /laboratorio
 
 - Exames:
-  - cadastrar um novo exame; POST /exame
-  - obter uma lista de exames ativos; GET /exame
-  - atualizar um exame existente; PUT /exame/atualizar
-  - remover logicamente um exame ativo. PUT /exame/remover
+  - cadastrar um novo exame; POST /exame [OK]
+  - obter uma lista de exames ativos; GET /exame [OK]
+  - atualizar um exame existente; PUT /exame/atualizar [OK]
+  - remover logicamente um exame ativo. PUT /exame/remover [OK]
 
 - Associação:
-  - associar um exame ativo à um laboratório ativo; PUT /exame/associar
-  - desassociar um exame ativo de um laboratório ativo; PUT /exame/desassociar
+  - associar um exame ativo à um laboratório ativo; PUT /exame/associar [OK]
+  - desassociar um exame ativo de um laboratório ativo; PUT /exame/desassociar [OK]
 
   **Importante:**
 
