@@ -35,7 +35,7 @@ function update(labId, newData) {
     return new Promise((resolve, reject) => {
         LaboratorioSchema.updateOne({ _id: labId }, newData).then(updatedLab => {
             resolve(updatedLab)
-        })
+        }).catch(err => reject(err))
     })
 }
 
@@ -44,8 +44,8 @@ function setInactive(labId) {
         findLaboratorioById(labId).then( _ => {
             LaboratorioSchema.updateOne({ _id: labId }, ( { status: 'inativo' })).then(result => {
                 resolve(result)
-            })
-        })
+            }).catch(err => reject(err))
+        }).catch(err => reject(err))
     })
 }
 
@@ -55,8 +55,7 @@ function findLaboratorioById(id) {
             .findOne({ _id: id })
             .then(laboratorio => { 
                 resolve(laboratorio) 
-            })
-            .catch(err => reject(err))
+            }).catch(err => reject(err))
     })
 }
 

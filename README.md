@@ -12,9 +12,10 @@ Code challenge para a vaga de desenvolvedor Backend da Dasa.
 - Criar as rotas. [OK]
 - Criar arquivo de configuração pro Mongoose. [OK]
 - Criar requests no postman. [OK]
-- Criar tratamento de erros para as rotas.
+- Criar tratamento de erros para as rotas. [OK]
 - Fazer verificação de id de lab inexistente no associate.
 - Testar localmente. [OK]
 - Trocar e testar por mongo local.
 - Criar Dockerfile.
 - Testar Docker Container.
+- Refatoração geral.

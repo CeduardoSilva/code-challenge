@@ -36,6 +36,8 @@ function update(exameId, newData) {
         console.log(`Looking for ${exameId}`)
         ExameSchema.updateOne({ _id: exameId }, newData).then(updatedExame => {
             resolve(updatedExame)
+        }).catch(err => {
+            resolve(err)
         })
     })
 }
@@ -45,7 +47,11 @@ function setInactive(exameId) {
         findExameById(exameId).then( _ => {
             ExameSchema.updateOne({ _id: exameId }, ( { status: 'inativo' })).then(result => {
                 resolve(result)
+            }).catch(err => {
+                reject(err)
             })
+        }).catch(err => {
+            reject(err)
         })
     })
 }

@@ -6,21 +6,21 @@ exames.getAllActives = (req, res, next) => {
     examesDB.findActiveExames()
         .then(data => {
             res.send(data)
-        })
+        }).catch(next)
 }
 
 exames.getExameById= (req, res, next) => {
     examesDB.findExameById(req.params.id)
         .then(data => {
             res.send(data)
-        })
+        }).catch(next)
 }
 
 exames.create = (req, res, next) => {
     examesDB.save(req.body)
         .then(data => {
             res.send(data)
-        })
+        }).catch(next)
 }
 
 exames.update = (req, res, next) => {

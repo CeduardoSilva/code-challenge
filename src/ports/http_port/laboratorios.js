@@ -6,35 +6,33 @@ laboratorios.getAllActives = (req, res, next) => {
     laboratoriosDB.findActiveLaboratorios()
         .then(data => {
             res.send(data)
-        })
+        }).catch(next)
 }
 
 laboratorios.getLaboratorioById = (req, res, next) => {
     laboratoriosDB.findLaboratorioById(req.params.id)
         .then(data => {
             res.send(data)
-        })
+        }).catch(next)
 }
 
 laboratorios.create = (req, res, next) => {
     laboratoriosDB.save(req.body)
         .then(data => {
             res.send(data)
-        })
+        }).catch(next)
 }
 
 laboratorios.update = (req, res, next) => {
     laboratoriosDB.update(req.params.id, req.body)
         .then(data => {
             res.send(data)
-        })
-        .catch(next)
+        }).catch(next)
 }
 
 laboratorios.remove = (req, res, next) => {
     laboratoriosDB.setInactive(req.params.id)
         .then(data => {
             res.send(data)
-        })
-        .catch(next)
+        }).catch(next)
 }

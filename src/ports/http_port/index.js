@@ -5,11 +5,11 @@ const exames = require('./exames')
 const laboratorios = require('./laboratorios')
 
 router
-  .get('/exames', exames.getAllActives)
-  .get('/exames/:id', exames.getExameById)
-  .post('/exames', exames.create)
-  .put('/exames/:id', exames.update)
-  .delete('/exames/:id', exames.remove)
+  .get('/exames', exames.getAllActives) //OK
+  .get('/exames/:id', exames.getExameById) //OK
+  .post('/exames', exames.create) //OK
+  .put('/exames/:id', exames.update) //OK
+  .delete('/exames/:id', exames.remove) //OK
   .post('/exames/associate/:id', exames.associate)
   .post('/exames/disassociate/:id', exames.disassociate)
 

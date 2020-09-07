@@ -1,14 +1,19 @@
 let Laboratorio = require('./laboratorio')
 
 function createLaboratorio(labData) {
+    try {
 
-    let newLab = new Laboratorio({
-        nome: labData.nome,
-        endereco: labData.endereco,
-        status: labData.status
-    })
+        let newLab = new Laboratorio({
+            nome: labData.nome,
+            endereco: labData.endereco,
+            status: labData.status
+        })
+    
+        return newLab
 
-    return newLab
+    } catch(err) {
+        return err
+    }
 }
 
 module.exports = {

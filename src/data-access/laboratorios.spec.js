@@ -1,6 +1,6 @@
 let chai = require('chai');
 let chaiAsPromised = require('chai-as-promised');
-let laboratorioController = require('./laboratorios')
+let laboratorioDB = require('./laboratorios')
 let Laboratorio = require('../models/laboratorio/laboratorio')
 let mongoose = require('mongoose');
 let Mockgoose = require('mockgoose').Mockgoose;
@@ -38,10 +38,10 @@ describe('Laboratorios Data-Access', () => {
         mockgoose.prepareStorage().then(function () {
             mongoose.connect('mongodb://localhost/TestingDB', { useNewUrlParser: true, useUnifiedTopology: true }, async _ => {
 
-                var testLabA = await laboratorioController.save(testLaboratorioA)
+                var testLabA = await laboratorioDB.save(testLaboratorioA)
                 testId = testLabA._id
 
-                await laboratorioController.save(testLaboratorioB)
+                await laboratorioDB.save(testLaboratorioB)
 
                 done();
 
@@ -58,19 +58,19 @@ describe('Laboratorios Data-Access', () => {
     })
 
     it("saves a new laboratorio", (done) => {
-        laboratorioController.save(testLaboratorioC).should.eventually.have.property("_id").and.notify(done)
+        laboratorioDB.save(testLaboratorioC).should.eventually.have.property("_id").and.notify(done)
     })
 
     it("updates a existing laboratorio", () => {
-        laboratorioController.update(testId,testNewLaboratorio).should.eventually.have.property("nModified").equal(1)
+        laboratorioDB.update(testId,testNewLaboratorio).should.eventually.have.property("nModified").equal(1)
     })
 
     it("removes a existing laboratorio by setting its status to 'inativo'", () => {
-       laboratorioController.setInactive(testId).should.eventually.have.property("nModified").equal(1)
+       laboratorioDB.setInactive(testId).should.eventually.have.property("nModified").equal(1)
     }) 
 
     it("gets a list of active laboratorios", (done) => {
-        laboratorioController.findActiveLaboratorios().should.eventually.be.an('array').and.notify(done)
+        laboratorioDB.findActiveLaboratorios().should.eventually.be.an('array').and.notify(done)
     })
 
 })
