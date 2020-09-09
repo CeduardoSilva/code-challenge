@@ -1,0 +1,481 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "version": "1.0.0",
+        "title": "Dasa Code Challenge",
+        "description": "API CRUD para Laboratorios e Exames",
+        "contact": {
+            "name": "Carlos Eduardo da Silva",
+            "email": "cs.eduardo@icloud.com",
+            "url": "https://www.linkedin.com/in/carlos-eduardo-da-silva-420411116/"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/",
+            "description": "Local server"
+        },
+        {
+            "url": "http://178.128.195.250:3000/",
+            "description": "Digital Ocean server"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Operações CRUD - Exames"
+        },
+        {
+            "name": "Operações CRUD - Laboratórios"
+        }
+    ],
+    "paths": {
+        "/exames": {
+            "get": {
+                "tags": [
+                    "Operações CRUD - Exames"
+                ],
+                "description": "Recupera uma lista dos exames ativos.",
+                "operationId": "getExames",
+                "responses": {
+                    "200": {
+                        "description": "Exames obtidos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "_id": {
+                                                "type": "string"
+                                            },
+                                            "nome": {
+                                                "type": "string"
+                                            },
+                                            "tipo": {
+                                                "type": "string"
+                                            },
+                                            "status": {
+                                                "type": "string"
+                                            },
+                                            "laboratorios": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Operações CRUD - Exames"
+                ],
+                "description": "Cria um exame. Propriedade tipo pode ser 'analise clinica' ou 'imagem' necessariamente.",
+                "operationId": "createExame",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "tipo": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Novo exame foi criado."
+                    }
+                }
+            }
+        },
+        "/exames/{id}": {
+            "get": {
+                "tags": [
+                    "Operações CRUD - Exames"
+                ],
+                "description": "Recupera um exame por id.",
+                "operationId": "getExame",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Id do exame a ser recuperado."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exame obtido.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string"
+                                        },
+                                        "nome": {
+                                            "type": "string"
+                                        },
+                                        "tipo": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "laboratorios": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Operações CRUD - Exames"
+                ],
+                "description": "Atualiza um exame. Propriedade tipo pode ser 'analise clinica' ou 'imagem' necessariamente.",
+                "operationId": "updateExame",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Id do exame a ser atualizado."
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "tipo": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exame foi atualizado."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Operações CRUD - Exames"
+                ],
+                "description": "Remove um exame ao tornar seu status inativo.",
+                "operationId": "deleteExame",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Id do exame a ser removido."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exame foi removido."
+                    }
+                }
+            }
+        },
+        "/exames/associate/{id}": {
+            "post": {
+                "tags": [
+                    "Operações CRUD - Exames"
+                ],
+                "description": "Associa laboratório a um exame a partir de seus ids. O laboratório precisa ter status 'ativo'.",
+                "operationId": "associateExame",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Id do exame."
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "laboratorioId": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Laboratorio associado ao exame com sucesso."
+                    }
+                }
+            }
+        },
+        "/exames/disassociate/{id}": {
+            "post": {
+                "tags": [
+                    "Operações CRUD - Exames"
+                ],
+                "description": "Disassocia um laboratório de um exame a partir de seus ids.",
+                "operationId": "disassociateExame",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Id do exame."
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "laboratorioId": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Laboratorio associado ao exame com sucesso."
+                    }
+                }
+            }
+        },
+        "/laboratorios": {
+            "get": {
+                "tags": [
+                    "Operações CRUD - Laboratórios"
+                ],
+                "description": "Recupera uma lista dos laboratórios ativos.",
+                "operationId": "getLaboratorios",
+                "responses": {
+                    "200": {
+                        "description": "Laboratórios obtidos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "_id": {
+                                                "type": "string"
+                                            },
+                                            "nome": {
+                                                "type": "string"
+                                            },
+                                            "endereco": {
+                                                "type": "string"
+                                            },
+                                            "status": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Operações CRUD - Laboratórios"
+                ],
+                "description": "Cria um laboratório.",
+                "operationId": "createLaboratorio",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "endereco": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Novo laboratório foi criado."
+                    }
+                }
+            }
+        },
+        "/laboratorios/{id}": {
+            "get": {
+                "tags": [
+                    "Operações CRUD - Laboratórios"
+                ],
+                "description": "Recupera um laboratório por id.",
+                "operationId": "getLaboratorio",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Id do laboratório a ser recuperado."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Laboratório obtido.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string"
+                                        },
+                                        "nome": {
+                                            "type": "string"
+                                        },
+                                        "endereco": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Operações CRUD - Laboratórios"
+                ],
+                "description": "Atualiza um laboratório.",
+                "operationId": "updateLaboratorio",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Id do laboratório a ser atualizado."
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "endereco": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Laboratório foi atualizado."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Operações CRUD - Laboratórios"
+                ],
+                "description": "Remove um laboratório ao tornar seu status inativo.",
+                "operationId": "deleteLaboratorio",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Id do exame a ser removido."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Laboratório foi removido."
+                    }
+                }
+            }
+        }
+    }
+}

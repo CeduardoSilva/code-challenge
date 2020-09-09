@@ -1,5 +1,6 @@
-var Exame = require('../models/exame/index');
-var ExameSchema = require('./schemas/exame-schema');
+let Exame = require('../models/exame/index');
+let ExameSchema = require('./schemas/exame-schema');
+let laboratorioDB = require('./laboratorios')
 
 function save(reqBody) {
     return new Promise((resolve, reject) => {
@@ -58,12 +59,21 @@ function setInactive(exameId) {
 
 function associate(exameId, activeLabId) {
     return new Promise((resolve, reject) => {
-        findExameById(exameId).then( exame => {
-            var labs = exame.laboratorios
-            labs.push(activeLabId)
-            ExameSchema.updateOne({ _id: exameId }, ( { laboratorios: labs })).then(result => {
-                resolve(result)
-            })
+        laboratorioDB.findLaboratorioById(activeLabId).then(result => {
+            console.log(`result: ${result}`)
+            if(result.hasOwnProperty("_id")!= undefined) {
+                findExameById(exameId).then( exame => {
+                    var labs = exame.laboratorios
+                    labs.push(activeLabId)
+                    ExameSchema.updateOne({ _id: exameId }, ( { laboratorios: labs })).then(result => {
+                        resolve(result)
+                    }).catch(err => {reject(err)})
+                }).catch(err => {reject(err)})
+            } else {
+                reject("Laboratorio not found")
+            }
+        }).catch(err => { 
+            reject("Laboratorio not found")
         })
     })
 }

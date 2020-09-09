@@ -6,7 +6,7 @@ let mongoose = require('mongoose');
 let Mockgoose = require('mockgoose').Mockgoose;
 let mockgoose = new Mockgoose(mongoose);
 
-let testLaboratorioA = new Laboratorio({
+let testLaboratorioA = new Laboratorio({ 
     nome: "A",
     endereco: "Endereco"
 })

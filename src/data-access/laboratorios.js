@@ -51,6 +51,7 @@ function setInactive(labId) {
 
 function findLaboratorioById(id) {
     return new Promise((resolve, reject) => {
+        console.log(`ID: ${id}`)
         LaboratorioSchema
             .findOne({ _id: id })
             .then(laboratorio => { 
