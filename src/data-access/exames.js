@@ -34,7 +34,6 @@ function findActiveExames() {
 
 function update(exameId, newData) {
     return new Promise((resolve, reject) => {
-        console.log(`Looking for ${exameId}`)
         ExameSchema.updateOne({ _id: exameId }, newData).then(updatedExame => {
             resolve(updatedExame)
         }).catch(err => {
@@ -60,7 +59,6 @@ function setInactive(exameId) {
 function associate(exameId, activeLabId) {
     return new Promise((resolve, reject) => {
         laboratorioDB.findLaboratorioById(activeLabId).then(result => {
-            console.log(`result: ${result}`)
             if(result.hasOwnProperty("_id")!= undefined) {
                 findExameById(exameId).then( exame => {
                     var labs = exame.laboratorios
@@ -81,7 +79,7 @@ function associate(exameId, activeLabId) {
 function disassociate(exameId, activeLabId) {
     return new Promise((resolve, reject) => {
         findExameById(exameId).then( exame => {
-            var labs = exame.laboratorios
+            let labs = exame.laboratorios
             labs = labs.filter((lab) => { return lab != activeLabId});
             ExameSchema.updateOne({ _id: exameId }, ( { laboratorios: labs })).then(result => {
                 findExameById(exameId).then( exame => {

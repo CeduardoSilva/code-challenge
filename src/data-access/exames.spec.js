@@ -38,7 +38,6 @@ let testNewExame = new Exame({
 
 let testId
 let activeLabId
-let inactiveLabId
 
 chai.use(chaiAsPromised);
 chai.should();

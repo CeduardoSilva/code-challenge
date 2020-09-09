@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var db = process.env.MONGO_URI;
+let mongoose = require('mongoose');
+let db = process.env.MONGO_URI;
 
 mongoose
   .connect(

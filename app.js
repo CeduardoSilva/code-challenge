@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
 
-const swaggerUi = require("swagger-ui-express");
+var swaggerUi = require("swagger-ui-express");
 swaggerDocument = require("./swagger.json");
 
 var indexRouter = require('./src/ports/http_port/index');

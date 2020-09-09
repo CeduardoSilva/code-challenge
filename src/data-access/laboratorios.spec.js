@@ -38,7 +38,7 @@ describe('Laboratorios Data-Access', () => {
         mockgoose.prepareStorage().then(function () {
             mongoose.connect('mongodb://localhost/TestingDB', { useNewUrlParser: true, useUnifiedTopology: true }, async _ => {
 
-                var testLabA = await laboratorioDB.save(testLaboratorioA)
+                let testLabA = await laboratorioDB.save(testLaboratorioA)
                 testId = testLabA._id
 
                 await laboratorioDB.save(testLaboratorioB)
