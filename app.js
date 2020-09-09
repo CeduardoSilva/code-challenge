@@ -15,6 +15,14 @@ require('./src/ports/mongoose_port')
 
 var app = express();
 
+var allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', "*")
+};
+
+app.configure(() => {
+  app.use(allowCrossDomain);
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

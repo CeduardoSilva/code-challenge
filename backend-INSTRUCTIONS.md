@@ -11,24 +11,24 @@ O objetivo do teste é:
 Estamos desenvolvendo uma aplicação para as seguintes situações:
 
 - Laboratório:
-  - cadastrar um novo laborário; POST /laboratorio [OK]
-  - obter uma lista de laboratórios ativos; GET /laboratorio [OK]
-  - atualizar um laboratório existente; PUT /laboratorio
-  - remover logicamente um laboratório ativo. PUT /laboratorio
+  - cadastrar um novo laborário; 
+  - obter uma lista de laboratórios ativos; 
+  - atualizar um laboratório existente; 
+  - remover logicamente um laboratório ativo. 
 
 - Exames:
-  - cadastrar um novo exame; POST /exame [OK]
-  - obter uma lista de exames ativos; GET /exame [OK]
-  - atualizar um exame existente; PUT /exame/atualizar [OK]
-  - remover logicamente um exame ativo. PUT /exame/remover [OK]
+  - cadastrar um novo exame; 
+  - obter uma lista de exames ativos; 
+  - atualizar um exame existente;  
+  - remover logicamente um exame ativo.
 
 - Associação:
-  - associar um exame ativo à um laboratório ativo; PUT /exame/associar [OK]
-  - desassociar um exame ativo de um laboratório ativo; PUT /exame/desassociar [OK]
+  - associar um exame ativo à um laboratório ativo; 
+  - desassociar um exame ativo de um laboratório ativo;
 
   **Importante:**
 
-  - Um exame pode estar associado a mais de um laboratório; ARRAY
+  - Um exame pode estar associado a mais de um laboratório; 
   - O cadastro de um laboratório/exame é considerado ativo e recebe um `id` gerado automaticamente.
 
 ### Informações

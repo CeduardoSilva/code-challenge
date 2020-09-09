@@ -16,11 +16,15 @@ Para rodar a partir de um Docker container é necessário:
 
 A aplicação foi criada seguindo conceitos de Arquitetura Limpa [(Clean Architecture)](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) que visa produzir sistemas altamente desacoplados e testáveis procurando reduzir dependências de UI, bancos de dados, frameworks e agentes externos no geral. O foco é que a lógica de negócios não saiba nada sobre o mundo externo.
 
-## Acessando a aplicação hospedada no Digital Ocean
+
+## Acessando a aplicação publicada no Digital Ocean
+-------------------
+
+A aplicação tem uma instância hospedada no Digital Ocean. Para visualizar a documentação da API e testa-la basta acessar: http://178.128.195.250:3000/api-docs/#
 
 
 ## Rodando a aplicação localmente
------------------------
+-------------------
 
 Para rodar a aplicação localmente basta executar os  comandos abaixo no diretório raiz do projeto:
 
@@ -69,14 +73,16 @@ Para rodar o container basta executar o comando abaixo:
 docker run -d --name dasa-challenge -p 3000:3000 -e AUTH=no dasa-challenge:1.0
 ```
 
+## Documentação da API
+-----------
+
+A documentação da API foi criada utilizando [Swagger UI](https://swagger.io/tools/swagger-ui/). Para acessa-la basta rodar a aplicação e navegar para http://localhost:3000/api-docs/#/. 
+
+
 ## Alterando o banco de dados da aplicação
 --------
 
-Note, no arquivo `./.env`, que a aplicação está configurada para rodar na porta `3000` e seu banco de dados está apontado para um MongoDB criado especificamente para esse teste e hospedado no [Digital Ocean](https://www.digitalocean.com). Caso queira utilizar outro MongoDB basta alterar o `.env` e reconstruir a imagem da aplicação ou roda-la localmente.'
-
-## Documentação da API
-
-A documentação da API foi criada utilizando [Swagger UI](https://swagger.io/tools/swagger-ui/). Para acessa-la basta rodar a aplicação e navegar para http://localhost:3000/api-docs/#/. 
+Note, no arquivo `./.env`, que a aplicação está configurada para rodar na porta `3000` e seu banco de dados está apontado para um MongoDB criado especificamente para esse teste e hospedado no [Digital Ocean](https://www.digitalocean.com). Caso queira utilizar outro MongoDB basta alterar o `.env` e reconstruir a imagem da aplicação ou roda-la localmente.
 
 
 # TODO
