@@ -1,6 +1,6 @@
-# Dasa Code Challenge
+# Code Challenge
 
-Teste para a vaga de Desenvolvedor Backend da Dasa. A seguir estão descritos a arquitetura utilizada no projeto assim como requisitos, documentação da API e instruções de deploy.
+Teste para a vaga de Desenvolvedor Backend. A seguir estão descritos a arquitetura utilizada no projeto assim como requisitos, documentação da API e instruções de deploy.
 
 ## Requisitos
 ----------
